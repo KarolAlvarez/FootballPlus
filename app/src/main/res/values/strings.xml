@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Football +</string>
+    <string name="Registtrarse">sign in</string>
+    <string name="CreateUser">create user</string>
+    <string name="Password">PASSWORD</string>
+    <string name="Username">USERNAME</string>
+    <string name="Enter">ENTER</string>
+    <string name="Registrer">REGISTRER</string>
+    <string name="Name">NAME</string>
+    <string name="Lastname">LASTNAME</string>
+    <string name="Comment">COMMENT</string>
+    <string name="Reserve">RESERVE</string>
+    <string name="Favorite">FAVORITE</string>
+
+
+    <item name="visible" type="id" />
+    <item name="masked" type="id" />
+
+    <string name="title_activity_perfil_user">PerfilUserActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="MyProfile">My Profile</string>
+    <string name="Namep">NAME: </string>
+    <string name="Usernamep">USERNAME: </string>
+    <string name="Male">Male</string>
+    <string name="Sexo">SEXO</string>
+    <string name="Female">Female</string>
+    <string name="Lastnamep">LASTNAME:</string>
+    <string name="Save_Changes">SAVE CHANGES</string>
+    <string name="FieldSynthetic">Canchas sinteticas</string>
+    <string name="Descriptionp">DESCRIPTION:</string>
+    <string name="Addressp">ADDRESS:</string>
+    <string name="Phonep">PHONE:</string>
+    <string name="title_activity_field">FieldActivity</string>
+    <string name="Field">FIELD:</string>
+    <string name="HourStart">HOUR START:</string>
+    <string name="DepartureTime">DEPARTURE TIME:</string>
+    <string name="addComment">ADD COMMENT</string>
+    <string name="titleComment">TITLE</string>
+    <string name="Hour">HOUR</string>
+    <string name="Datep">DATE:</string>
+    <string name="Date">DATE</string>
+    <string name="oneHour">ONE HOUR</string>
+    <string name="twoHour">TWO HOURS</string>
+    <string name="timeReservation">TIME</string>
+
+</resources>

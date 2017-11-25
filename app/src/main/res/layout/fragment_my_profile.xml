@@ -1,0 +1,214 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    tools:context="com.example.k11.footballplus.Views.MyProfileFragment">
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="14dp"
+        android:elevation="6dp"
+        android:padding="10dp"
+        app:cardCornerRadius="8dp"
+        app:layout_collapseMode="parallax"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+        <!--colocar dentro del fragment_my_profile-->
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+
+                >
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgItemListFieldSoccerProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/cancha" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@android:color/darker_gray" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:layout_weight="0.8"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="6dp"
+                        android:text="@string/Namep"
+                        android:textColor="@android:color/black"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtNameFragmentMyProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="6dp"
+                        android:text="Nombre de usuario"
+                        android:textColor="@android:color/black"
+                        android:textSize="18dp"
+                        android:textStyle="italic" />
+
+                    <ImageView
+                        android:id="@+id/imgBtnNameFragmentMyProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/border_button_my_profile"
+                        android:src="@drawable/plume" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="6dp"
+                        android:text="@string/Lastnamep"
+                        android:textColor="@android:color/black"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtLastnameFragmentMyProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="6dp"
+                        android:text="Lastname"
+                        android:textColor="@android:color/black"
+                        android:textSize="18dp"
+                        android:textStyle="italic" />
+
+                    <ImageView
+                        android:id="@+id/imgBtnLastnameFragmentMyProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/border_button_my_profile"
+                        android:src="@drawable/plume"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="6dp"
+                        android:text="@string/Usernamep"
+                        android:textColor="@android:color/black"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtUsernameFragmentMyProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="6dp"
+                        android:text="Username"
+                        android:textColor="@android:color/black"
+                        android:textSize="18dp"
+                        android:textStyle="italic" />
+
+                    <ImageView
+                        android:id="@+id/imgBtnUsernameFragmentMyProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/border_button_my_profile"
+                        android:src="@drawable/plume"
+
+                        />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edtUpdateFragmentMyProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_margin="5dp"
+                        android:inputType="text"
+                        android:padding="2dp"
+                        android:textSize="18dp"
+                        android:theme="@style/EditTextBlac" />
+
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnUpdateFragmentMyProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="24dp"
+                    android:background="@drawable/border_button_my_profile"
+                    android:text="@string/Save_Changes"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:theme="@style/EditTextBlac" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+</FrameLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.k11.footballplus">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Views.CreateUserActivity" />
+        <activity
+            android:name=".Views.ListFieldSoccerActivity"
+            android:label="@string/FieldSynthetic" />
+        <activity
+            android:name=".Views.PerfilUserActivity"
+            android:label="@string/title_activity_perfil_user"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Views.FieldActivity"
+            android:label="@string/title_activity_field"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Views.CommentActivity" />
+        <activity android:name=".Views.ReservationActivity"></activity>
+    </application>
+
+</manifest>

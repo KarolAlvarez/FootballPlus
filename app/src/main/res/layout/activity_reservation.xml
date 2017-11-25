@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    tools:context="com.example.k11.footballplus.Views.ReservationActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:padding="2dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="40dp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:text="Nombre de la cancha"
+            />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/Hour"
+                android:textColor="@android:color/black"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text=":"
+                android:textColor="@android:color/black"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinerHourActivityRreservation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:padding="4dp">
+
+
+            </Spinner>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:weightSum="4"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/Datep"
+                android:layout_weight="1"
+                android:textColor="@android:color/black"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:id="@+id/txtDateActivityReservation"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
+                android:textColor="@android:color/black"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnDateActivityReservation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/border_button_my_profile"
+                android:text="@string/Date"
+
+
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="@string/timeReservation"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/groupRadioButonActivityReservation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RadioButton
+                    android:id="@+id/radioButtonOneHourActivityReservation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:text="@string/oneHour"
+                    android:theme="@style/EditTextBlac" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonTwoHourActivityReservation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:text="@string/twoHour"
+                    android:theme="@style/EditTextBlac" />
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Reserve"
+            android:layout_margin="20dp"
+            android:background="@drawable/border_button_my_profile"
+
+
+            />
+
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

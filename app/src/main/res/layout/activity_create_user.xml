@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.k11.footballplus.Views.CreateUserActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        android:weightSum="5">
+
+
+        <RelativeLayout
+            android:id="@+id/rlCrUser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4">
+
+            <ImageView
+                android:id="@+id/img1_CreateUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@color/colorAccent"
+                android:src="@drawable/logousercreate" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edtLayoutNameCreateUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginRight="48dp"
+                android:theme="@style/EditTextWhite"
+                tools:ignore="UnknownId">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edtNameCreateUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Name"
+                    android:inputType="text"
+                    android:textSize="18dp" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edtLayoutLastNameCreateUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edtLayoutNameCreateUser"
+                android:layout_marginLeft="48dp"
+                android:layout_marginRight="48dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/EditTextWhite">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edtLastNameCreateUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Lastname"
+                    android:inputType="text"
+                    android:textSize="18dp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edtLayoutUserNameCreateUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edtLayoutLastNameCreateUser"
+                android:layout_marginLeft="48dp"
+                android:layout_marginRight="48dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/EditTextWhite"
+                tools:ignore="UnknownId">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edtUserNameCreateUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Username"
+                    android:inputType="text"
+                    android:textSize="18dp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edtLayoutPaswordCreateUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edtLayoutUserNameCreateUser"
+                android:layout_marginLeft="48dp"
+                android:layout_marginRight="48dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/EditTextWhite"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@android:color/white"
+                >
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edtPasswordCreateUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Password"
+                    android:inputType="numberPassword"
+                    android:textSize="18dp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <RadioGroup
+                android:id="@+id/radioGroupButonCreateuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edtLayoutPaswordCreateUser"
+                android:layout_marginLeft="49dp"
+                android:layout_marginRight="49dp"
+                android:theme="@style/EditTextWhite"
+                android:layout_marginTop="15dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/Sexo"/>
+
+                <RadioButton
+                    android:id="@+id/radioButtonMaleCreateUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Male"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="18dp" />
+
+
+
+
+                <RadioButton
+                    android:id="@+id/radioButtonFemaleCreateUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Female"
+                    android:textColor="@android:color/white"
+
+                    android:textSize="18dp" />
+
+            </RadioGroup>
+            <View
+                android:layout_below="@id/radioGroupButonCreateuser"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="51dp"
+                android:background="@android:color/white"
+                android:layout_marginRight="51dp"
+                android:layout_height="1.5dp"/>
+
+            <Button
+                android:id="@+id/btnCreateUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/radioGroupButonCreateuser"
+                android:layout_marginLeft="48dp"
+                android:layout_marginRight="48dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/borderbutonlogin"
+                android:text="@string/Registrer"
+                android:textColor="@android:color/white"
+
+                />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

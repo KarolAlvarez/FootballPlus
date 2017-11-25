@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuLookProfileListfieldSoccer"
+        android:title="@string/MyProfile"
+        app:showAsAction="always"
+        android:icon="@drawable/profile"/>
+    <item android:id="@+id/menuSignOffListfieldSoccer"
+        android:title="Sign off"
+        app:showAsAction="never"
+        />
+
+
+</menu>

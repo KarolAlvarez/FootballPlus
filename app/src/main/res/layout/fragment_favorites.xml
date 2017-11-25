@@ -1,0 +1,12 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.k11.footballplus.Views.FavoritesFragment">
+
+    <!-- colocar item list field  soccer - listado de favoritos     -->
+<include layout="@layout/item_list_field_soccer"/>
+
+
+
+</FrameLayout>
