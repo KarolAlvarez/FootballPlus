@@ -2,6 +2,7 @@ package com.example.k11.footballplus.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.provider.Contacts;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.example.k11.footballplus.R;
 import com.example.k11.footballplus.Views.CommentActivity;
 import com.example.k11.footballplus.Views.FieldActivity;
 import com.example.k11.footballplus.Views.ReservationActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,7 @@ public class ListFieldSoccerAdapter extends RecyclerView.Adapter<ListFieldSoccer
         holder.txtNameFieldSoccer.setText(campFootballList.get(position).getName());
         holder.txtDescriptionFieldSoccer.setText(campFootballList.get(position).getDescription());
         //imagen con picaso
+        Picasso.with(context).load(campFootballList.get(position).getImage()).into((holder.imgItemListFieldSoccerProfile));
 
 
         holder.imgItemListFieldSoccerProfile.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +103,7 @@ public class ListFieldSoccerAdapter extends RecyclerView.Adapter<ListFieldSoccer
         return campFootballList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtNameFieldSoccer, txtDescriptionFieldSoccer;
         ImageView imgItemListFieldSoccerProfile;
         CheckBox checkboxFavoriteItemListFieldSoccer;
@@ -108,9 +111,6 @@ public class ListFieldSoccerAdapter extends RecyclerView.Adapter<ListFieldSoccer
 
         public ViewHolder(View item) {
             super(item);
-
-            item.setOnClickListener(this);
-
             txtNameFieldSoccer = (TextView) item.findViewById(R.id.txtNameFieldSoccer);
             txtDescriptionFieldSoccer = (TextView) item.findViewById(R.id.txtDescriptionFieldSoccer);
             checkboxFavoriteItemListFieldSoccer = (CheckBox) item.findViewById(R.id.checkboxFavoriteItemListFieldSoccer);
@@ -119,22 +119,7 @@ public class ListFieldSoccerAdapter extends RecyclerView.Adapter<ListFieldSoccer
             btnCommentItemListFieldSoccer = (Button) item.findViewById(R.id.btnCommentItemListFieldSoccer);
         }
 
-        @Override
-        public void onClick(View view) {
-            Context contextItem = view.getContext();
 
-            Intent intent = new Intent(context, CommentActivity.class);
- /*            intent.putExtra("id", Integer.toString(contactList.get(getLayoutPosition()).getId()));
-            intent.putExtra("name", contactList.get(getLayoutPosition()).getName());
-            intent.putExtra("phone", contactList.get(getLayoutPosition()).getPhone());
-            intent.putExtra("email", contactList.get(getLayoutPosition()).getEmail());
-  */
-            contextItem.startActivity(intent);
-
-
-            //String valor = Integer.toString(albumModelList.get(getLayoutPosition()).getId());
-            //Toast.makeText(contextItem, valor, Toast.LENGTH_SHORT).show();
-        }
     }
 
 }

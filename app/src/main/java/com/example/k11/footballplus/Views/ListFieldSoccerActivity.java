@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -27,9 +26,7 @@ import java.util.List;
 public class ListFieldSoccerActivity extends AppCompatActivity {
     private CheckBox checkboxFavoriteItemListFieldSoccer;
     private ImageView imagen;
-    private Button BtnCommentItemListFieldSoccer,BtnReserveItemListFieldSoccer;
-
-
+    private Button BtnCommentItemListFieldSoccer, BtnReserveItemListFieldSoccer;
 
 
     RecyclerView recyclerViewContactsListFieldSoccer;
@@ -90,35 +87,34 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void listContacts(){
+    public void listContacts() {
         SQLiteDatabase db = sqliteHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM CAMP  ORDER BY ID ASC", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM CAMP ORDER BY NAME_CAMP ASC", null);
 
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             CampFootball campFootball = new CampFootball();
             campFootball.setId(cursor.getInt(0));
             campFootball.setName(cursor.getString(1));
             campFootball.setDescription(cursor.getString(2));
             campFootball.setAddress(cursor.getString(3));
-            campFootball.setPhone(cursor.getInt(4));
-            campFootball.setImage(cursor.getString(5));
+            campFootball.setImage(cursor.getString(4));
+            campFootball.setPhone(cursor.getInt(5));
             campFootballList.add(campFootball);
         }
 
         cursor.close();
 
-        if (campFootballList.size() != 0){
+        if (campFootballList.size() != 0) {
             processData();
-        }else{
+        } else {
             Toast.makeText(this, "Lista vacia", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void processData(){
+    public void processData() {
         listFieldSoccerAdapter = new ListFieldSoccerAdapter(campFootballList, getApplicationContext());
         recyclerViewContactsListFieldSoccer.setAdapter(listFieldSoccerAdapter);
     }
-
 
 
 }
