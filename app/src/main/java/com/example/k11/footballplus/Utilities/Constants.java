@@ -6,6 +6,7 @@ package com.example.k11.footballplus.Utilities;
 
 public class Constants {
 
+
     //TABLA DE USUARIOS
     public static final String TABLA_NAME_USER = "USER";
     public static final String TABLA_USER_ID = "ID";
