@@ -33,12 +33,14 @@ public class Constants {
     public static final String TABLA_CAMP_DESCRIPTION = "DESCRIPTION";
     public static final String TABLA_CAMP_ADDRESS = "ADDRESS";
     public static final String TABLA_CAMP_PHONE = "PHONE";
+    public static final String TABLA_CAMP_IMAGE = "IMAGE";
     public static final String CREATE_TABLE_CAMP =
             "CREATE TABLE " + TABLA_NAME_CAMP + " (" +
                     TABLA_CAMP_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
                     TABLA_CAMP_NAME_CAMP + " TEXT NOT NULL, " +
                     TABLA_CAMP_DESCRIPTION + " TEXT NOT NULL, " +
                     TABLA_CAMP_ADDRESS + " TEXT NOT NULL, " +
+                    TABLA_CAMP_IMAGE + " TEXT NOT NULL, " +
                     TABLA_CAMP_PHONE + " INTEGER NOT NULL)";
 
     //TABLA DE FAVORITOS
