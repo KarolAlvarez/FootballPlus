@@ -49,7 +49,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/DescriptionFieldSoccer"
+                    android:id="@+id/txtDescriptionFieldSoccer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@id/txtNameFieldSoccer"
@@ -130,7 +130,7 @@
                     android:layout_weight="1">
 
                     <Button
-                        android:id="@+id/BtnReserveItemListFieldSoccer"
+                        android:id="@+id/btnReserveItemListFieldSoccer"
                         android:layout_width="wrap_content"
                         android:layout_height="16dp"
                         android:layout_centerInParent="true"
@@ -162,7 +162,7 @@
 
 
                     <Button
-                        android:id="@+id/BtnCommentItemListFieldSoccer"
+                        android:id="@+id/btnCommentItemListFieldSoccer"
                         android:layout_width="wrap_content"
                         android:layout_height="16dp"
                         android:layout_centerInParent="true"

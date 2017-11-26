@@ -32,7 +32,7 @@ public class FavoritesFragment extends Fragment {
         // Inflate the layout for this fragment
         final View v= inflater.inflate(R.layout.fragment_favorites,container,false);
 
-        BtnCommentItemListFieldSoccer=(Button)v.findViewById(R.id.BtnCommentItemListFieldSoccer);
+        BtnCommentItemListFieldSoccer=(Button)v.findViewById(R.id.btnCommentItemListFieldSoccer);
         BtnCommentItemListFieldSoccer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,7 +42,7 @@ public class FavoritesFragment extends Fragment {
                 Toast.makeText(getActivity(),"crear comentario",Toast.LENGTH_SHORT).show();
             }
         });
-        BtnReserveItemListFieldSoccer= (Button)v.findViewById(R.id.BtnReserveItemListFieldSoccer);
+        BtnReserveItemListFieldSoccer= (Button)v.findViewById(R.id.btnReserveItemListFieldSoccer);
         BtnReserveItemListFieldSoccer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

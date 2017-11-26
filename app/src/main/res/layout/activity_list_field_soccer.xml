@@ -7,9 +7,8 @@
     tools:context="com.example.k11.footballplus.Views.ListFieldSoccerActivity">
 
 
-<include layout="@layout/item_list_field_soccer"/>
-
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewContactsListFieldSoccer"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
