@@ -146,6 +146,9 @@ public class FieldActivity extends AppCompatActivity {
 
                 case 1:
                     CommentsFragment commentsFragment = new CommentsFragment();
+                    Bundle bund = new Bundle();
+                    bund.putInt("idCamp", idCamp);
+                    commentsFragment.setArguments(bund);
 
 
                     return commentsFragment;
