@@ -105,6 +105,7 @@ int id=0;
 
         if(getUser(name,pass)){
            a.setLoggedin(true,name,pass);
+           a.setId();
             Intent intent = new Intent(this, ListFieldSoccerActivity.class);
             //  intent.putExtra("email",email);
             startActivity(intent);

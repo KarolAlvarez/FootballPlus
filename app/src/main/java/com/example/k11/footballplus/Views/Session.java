@@ -36,6 +36,17 @@ public class Session {
 
 
 
+
+    public void setId(){
+
+
+        editor.putString(String.valueOf(KEY_ID),null);
+
+        editor.commit();
+    }
+
+
+
     public HashMap<String, String> getUserDetails(){
         HashMap<String, String> user = new HashMap<String, String>();
         // user name
