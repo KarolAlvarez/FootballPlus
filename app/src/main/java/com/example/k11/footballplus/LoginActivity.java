@@ -113,6 +113,8 @@ public class LoginActivity extends AppCompatActivity {
 
             startActivity(intent);
 
+
+
             finish();
         } else {
             Toast.makeText(getApplicationContext(), "Error de autenticacion", Toast.LENGTH_SHORT).show();
