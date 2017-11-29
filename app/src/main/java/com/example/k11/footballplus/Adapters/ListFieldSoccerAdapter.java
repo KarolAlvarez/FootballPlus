@@ -56,7 +56,12 @@ public class ListFieldSoccerAdapter extends RecyclerView.Adapter<ListFieldSoccer
         holder.imgItemListFieldSoccerProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 Intent intent = new Intent(view.getContext(), FieldActivity.class);
+                intent.putExtra("idCamp",campFootballList.get(position).getId());
+
                 context.startActivity(intent);
             }
         });
