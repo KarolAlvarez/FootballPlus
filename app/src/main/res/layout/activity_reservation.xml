@@ -57,8 +57,9 @@
                 android:id="@+id/spinerHourActivityRreservation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="10dp"
                 android:padding="4dp">
 
 
