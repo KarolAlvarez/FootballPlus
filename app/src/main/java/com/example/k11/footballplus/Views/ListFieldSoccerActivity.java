@@ -9,9 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.k11.footballplus.Adapters.ListFieldSoccerAdapter;
@@ -24,10 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListFieldSoccerActivity extends AppCompatActivity {
-    private CheckBox checkboxFavoriteItemListFieldSoccer;
-    private ImageView imagen;
-    private Button BtnCommentItemListFieldSoccer, BtnReserveItemListFieldSoccer;
-
 
     RecyclerView recyclerViewContactsListFieldSoccer;
     ListFieldSoccerAdapter listFieldSoccerAdapter;
@@ -114,24 +107,6 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
     public void processData() {
         listFieldSoccerAdapter = new ListFieldSoccerAdapter(campFootballList, getApplicationContext());
         recyclerViewContactsListFieldSoccer.setAdapter(listFieldSoccerAdapter);
-    }
-
-
-    public void userData() {
-        SqliteHelper sqliteHelper;
-        sqliteHelper = new SqliteHelper(this, "DB_CAMP_FOOTBALL", null, 1);
-
-        SQLiteDatabase db = sqliteHelper.getReadableDatabase();
-
-
-        Cursor cursor = db.rawQuery("SELECT NAME, LAST_NAME, USER_NAME FROM USER WHERE USER.ID = 1",null);
-
-        Toast.makeText(this,cursor.getString(0),Toast.LENGTH_SHORT).show();
-
-        // txtLastnameFragmentMyProfile.setText(""+cursor.getString(0));
-        // txtNameFragmentMyProfile.setText(""+cursor.getString(1));
-        // txtUsernameFragmentMyProfile.setText(""+cursor.getString(2));
-
     }
 
 }

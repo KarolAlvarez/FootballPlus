@@ -47,7 +47,7 @@ public class FragmentField extends Fragment {
         txtDescriptionFragmentField = (TextView) view.findViewById(R.id.txtDescriptionFragmentField);
         txtAddressFragmentField = (TextView) view.findViewById(R.id.txtAddressFragmentField);
         txtPhoneFragmentField = (TextView) view.findViewById(R.id.txtPhoneFragmentField);
-        imgNameFieldActivity=(ImageView)view.findViewById(R.id.imgNameFieldActivity);
+        imgNameFieldActivity = (ImageView) view.findViewById(R.id.imgNameFieldActivity);
         // Toast.makeText(getActivity(), "" + getArguments().getInt("idCamp"), Toast.LENGTH_SHORT).show();
         campData();
 
@@ -66,13 +66,10 @@ public class FragmentField extends Fragment {
                 txtDescriptionFragmentField.setText(cursor.getString(1));
                 txtAddressFragmentField.setText(cursor.getString(2));
                 txtPhoneFragmentField.setText(cursor.getString(4));
-
                 Picasso.with(getActivity()).load(cursor.getString(3)).into(imgNameFieldActivity);
-
-
             }
         } catch (Exception e) {
-            Toast.makeText(getActivity(), "el usuario no existe", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "el usuario no existe", Toast.LENGTH_SHORT).show();
 
         }
         db.close();

@@ -164,6 +164,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btnReserveActivityReservation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Reserve"

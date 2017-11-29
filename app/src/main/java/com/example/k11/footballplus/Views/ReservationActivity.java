@@ -1,28 +1,42 @@
 package com.example.k11.footballplus.Views;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.k11.footballplus.Helpers.SqliteHelper;
 import com.example.k11.footballplus.R;
+import com.example.k11.footballplus.Utilities.Constants;
+import com.example.k11.footballplus.Utilities.IdUser;
 
 import java.util.Calendar;
 
 public class ReservationActivity extends AppCompatActivity {
     TextView txtDateActivityReservation;
-    Button btnDateActivityReservation;
-    private int day, month, year;
+    Button btnDateActivityReservation,
+            btnReserveActivityReservation;
+    private int day, month, year, idCamp;
+    String flagHourStart, flagHourEnd;
+    SqliteHelper sqliteHelper;
+    SQLiteDatabase db;
+
+    RadioGroup groupRadioButonActivityReservation;
 
     private Spinner spinerHourActivityRreservation;
 
-    private String[] hours = {"07:00",
+    private String[] hours = {"", "07:00",
             "08:00", "09:00", "10:00",
             "11:00", "12:00", "13:00",
             "14:00", "15:00", "16:00",
@@ -37,9 +51,32 @@ public class ReservationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reservation);
         txtDateActivityReservation = (TextView) findViewById(R.id.txtDateActivityReservation);
         btnDateActivityReservation = (Button) findViewById(R.id.btnDateActivityReservation);
+        btnReserveActivityReservation = (Button) findViewById(R.id.btnReserveActivityReservation);
+
+        sqliteHelper = new SqliteHelper(this, "DB_CAMP_FOOTBALL", null, 1);
+
+
         spinerHourActivityRreservation = (Spinner) findViewById(R.id.spinerHourActivityRreservation);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, hours);
         spinerHourActivityRreservation.setAdapter(adapter);
+
+
+        Bundle bundle = getIntent().getExtras();
+        idCamp = bundle.getInt("idCamp");
+
+        groupRadioButonActivityReservation = (RadioGroup) findViewById(R.id.groupRadioButonActivityReservation);
+        groupRadioButonActivityReservation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                if (checkedId == R.id.radioButtonOneHourActivityReservation) {
+                    flagHourStart = hours[((int) spinerHourActivityRreservation.getSelectedItemId())];
+                    flagHourEnd = hours[((int) spinerHourActivityRreservation.getSelectedItemId() + 1)];
+                } else if (checkedId == R.id.radioButtonTwoHourActivityReservation) {
+                    flagHourStart = hours[((int) spinerHourActivityRreservation.getSelectedItemId())];
+                    flagHourEnd = hours[((int) spinerHourActivityRreservation.getSelectedItemId() + 2)];
+                }
+            }
+        });
 
 
         btnDateActivityReservation.setOnClickListener(new View.OnClickListener() {
@@ -58,11 +95,55 @@ public class ReservationActivity extends AppCompatActivity {
                 }, day, month, year);
 
                 datePickerDialog.show();
-
-
             }
         });
 
+
+        btnReserveActivityReservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                onClickcreateComment(flagHourStart, flagHourEnd, idCamp);
+
+                // Toast.makeText(view.getContext(), hourStart, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void onClickcreateComment(String hourStar, String hourEnd, int idCamp) {
+
+
+        String stringDate = txtDateActivityReservation.getText().toString();
+
+
+        if (TextUtils.isEmpty(hourStar)) {
+            Toast.makeText(this, "The hour field is empty", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(hourEnd)) {
+            Toast.makeText(this, "the time has not been selected", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(stringDate)) {
+            Toast.makeText(this, "the date has not been selected", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "the camp football was reserved successfully", Toast.LENGTH_SHORT).show();
+            reserve(hourStar, hourEnd, idCamp);
+        }
+    }
+
+    public void reserve(String hourStar, String hourEnd, int idCamp) {
+
+        db = sqliteHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Constants.TABLA_RESERVATION_ID_USER, IdUser.getIdUser());
+        values.put(Constants.TABLA_RESERVATION_ID_CAMP, idCamp);
+        values.put(Constants.TABLA_RESERVATION_START_TIME, hourStar);
+        values.put(Constants.TABLA_RESERVATION_END_TIME, hourEnd);
+        values.put(Constants.TABLA_RESERVATION_DATE, txtDateActivityReservation.getText().toString());
+
+        db.insert(Constants.TABLA_NAME_RESERVATION, Constants.TABLA_RESERVATION_ID, values);
+        Intent intent = new Intent(this, ListFieldSoccerActivity.class);
+        startActivity(intent);
+        db.close();
     }
 
 
