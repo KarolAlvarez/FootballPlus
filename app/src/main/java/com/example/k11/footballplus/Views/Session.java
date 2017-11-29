@@ -37,10 +37,10 @@ public class Session {
 
 
 
-    public void setId(){
+    public void setId( Integer id ){
 
 
-        editor.putString(String.valueOf(KEY_ID),null);
+        editor.putInt(String.valueOf(KEY_ID),id);
 
         editor.commit();
     }
@@ -56,14 +56,16 @@ public class Session {
         return user;
     }
 
-    public HashMap<String, String> getUserId(){
-        HashMap<String, String> id = new HashMap<String, String>();
+
+    public HashMap<Integer, Integer> getUserIde(){
+        HashMap<Integer, Integer> IDE = new HashMap<Integer, Integer>();
         // user name
-        id.put(String.valueOf(KEY_ID), prefs.getString(String.valueOf(KEY_ID), null));
+        IDE.put(KEY_ID, prefs.getInt(String.valueOf(KEY_ID), 0));
 
 
-        return id;
+        return IDE;
     }
+
 
 
 

@@ -19,20 +19,23 @@ import com.example.k11.footballplus.Helpers.SqliteHelper;
 import com.example.k11.footballplus.LoginActivity;
 import com.example.k11.footballplus.Models.CampFootball;
 import com.example.k11.footballplus.R;
+import com.example.k11.footballplus.Utilities.IdUser;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ListFieldSoccerActivity extends AppCompatActivity {
     private CheckBox checkboxFavoriteItemListFieldSoccer;
     private ImageView imagen;
     private Button BtnCommentItemListFieldSoccer, BtnReserveItemListFieldSoccer;
-
+private Session session;
     RecyclerView recyclerViewContactsListFieldSoccer;
     ListFieldSoccerAdapter listFieldSoccerAdapter;
     List<CampFootball> campFootballList = new ArrayList<>();
     SqliteHelper sqliteHelper;
+
 
 
     @Override
@@ -47,6 +50,17 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
             logout();
         }
 
+        HashMap<Integer, Integer> ide = a.getUserIde();
+        Integer ides=ide.get(Session.KEY_ID);
+        IdUser.setIdUser(ides);
+
+
+        HashMap<String, String> name = a.getUserDetails();
+       String names=name.get(Session.KEY_NAME);
+
+
+       Toast.makeText(this, ""+names+ides, Toast.LENGTH_SHORT).show();
+
         recyclerViewContactsListFieldSoccer = (RecyclerView) findViewById(R.id.recyclerViewContactsListFieldSoccer);
 
 
@@ -56,6 +70,8 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
         recyclerViewContactsListFieldSoccer.setLayoutManager(linearLayoutManager);
 
         listCamp();
+
+
 
     }
 

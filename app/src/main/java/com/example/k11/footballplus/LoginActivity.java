@@ -23,7 +23,7 @@ import com.example.k11.footballplus.Views.ListFieldSoccerActivity;
 import com.example.k11.footballplus.Views.Session;
 
 public class LoginActivity extends AppCompatActivity {
-
+    public int id;
     private TextView txtBtnCreateUser;
     private EditText edtUserNameLogin, edtUserPasswordLogin;
     private Button btnEnter;
@@ -33,8 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Session a= new Session(this);
-        if(a.loggedin()){
+        Session a = new Session(this);
+        if (a.loggedin()) {
             startActivity(new Intent(LoginActivity.this, ListFieldSoccerActivity.class));
             finish();
         }
@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //guardar id de el usuario que ingresa
 
-               // IdUser.setIdUser(1);
+                // IdUser.setIdUser(1);
 
                 login();
                 //Intent intent = new Intent(view.getContext(), ListFieldSoccerActivity.class);
@@ -70,19 +70,18 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
     }
-    public boolean getUser(String name, Integer pass){
-int id=0;
+
+    public boolean getUser(String name, Integer pass) {
+
         String selectQuery = "select * from  " + Constants.TABLA_NAME_USER + " where " +
-              Constants.TABLA_USER_USERNAME+ " = " + "'"+name+"'" + " and " + Constants.TABLA_USER_PIN + " = " + pass;
+                Constants.TABLA_USER_USERNAME + " = " + "'" + name + "'" + " and " + Constants.TABLA_USER_PIN + " = " + pass;
 
-        SQLiteDatabase db =  sqliteHelper.getReadableDatabase();
+        SQLiteDatabase db = sqliteHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-        while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
 
-            //Users users = new Users();
-            //users.setId(cursor.getInt(0));
+            id = cursor.getInt(0);
 
 
             if (cursor.getCount() > 0) {
@@ -97,23 +96,28 @@ int id=0;
 
         return false;
     }
-    private void login(){
-       Session a= new Session(this);
-        String name = edtUserNameLogin .getText().toString();
-        Integer pass =Integer.parseInt(edtUserPasswordLogin .getText().toString()) ;
 
 
-        if(getUser(name,pass)){
-           a.setLoggedin(true,name,pass);
-           a.setId();
+    private void login() {
+
+
+        Session a = new Session(this);
+        String name = edtUserNameLogin.getText().toString();
+        Integer pass = Integer.parseInt(edtUserPasswordLogin.getText().toString());
+
+
+        if (getUser(name, pass)) {
+            a.setLoggedin(true, name, pass);
+            a.setId(id);
             Intent intent = new Intent(this, ListFieldSoccerActivity.class);
-            //  intent.putExtra("email",email);
+
             startActivity(intent);
 
             finish();
-        }else{
-            Toast.makeText(getApplicationContext(), "Error de autenticacion",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Error de autenticacion", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }
