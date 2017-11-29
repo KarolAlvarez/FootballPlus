@@ -49,7 +49,7 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewContactsListFieldSoccer.setLayoutManager(linearLayoutManager);
 
-        listContacts();
+        listCamp();
 
     }
 
@@ -87,7 +87,7 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void listContacts() {
+    public void listCamp() {
         SQLiteDatabase db = sqliteHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM CAMP ORDER BY NAME_CAMP ASC", null);
 
@@ -116,5 +116,22 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
         recyclerViewContactsListFieldSoccer.setAdapter(listFieldSoccerAdapter);
     }
 
+
+    public void userData() {
+        SqliteHelper sqliteHelper;
+        sqliteHelper = new SqliteHelper(this, "DB_CAMP_FOOTBALL", null, 1);
+
+        SQLiteDatabase db = sqliteHelper.getReadableDatabase();
+
+
+        Cursor cursor = db.rawQuery("SELECT NAME, LAST_NAME, USER_NAME FROM USER WHERE USER.ID = 1",null);
+
+        Toast.makeText(this,cursor.getString(0),Toast.LENGTH_SHORT).show();
+
+        // txtLastnameFragmentMyProfile.setText(""+cursor.getString(0));
+        // txtNameFragmentMyProfile.setText(""+cursor.getString(1));
+        // txtUsernameFragmentMyProfile.setText(""+cursor.getString(2));
+
+    }
 
 }

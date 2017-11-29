@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.k11.footballplus.Utilities.IdUser;
 import com.example.k11.footballplus.Views.CreateUserActivity;
 import com.example.k11.footballplus.Views.ListFieldSoccerActivity;
 
@@ -31,6 +32,11 @@ public class LoginActivity extends AppCompatActivity {
         btnEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //guardar id de el usuario que ingresa
+
+                IdUser.setIdUser(1);
+
+
                 Intent intent = new Intent(view.getContext(), ListFieldSoccerActivity.class);
                 startActivity(intent);
 

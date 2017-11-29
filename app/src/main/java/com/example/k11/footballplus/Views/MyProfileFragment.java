@@ -1,6 +1,8 @@
 package com.example.k11.footballplus.Views;
 
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.k11.footballplus.Helpers.SqliteHelper;
 import com.example.k11.footballplus.R;
+import com.example.k11.footballplus.Utilities.IdUser;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +24,7 @@ import com.example.k11.footballplus.R;
 public class MyProfileFragment extends Fragment {
 
     private Integer flagOfUpdate = 0;
+
 
     ImageView imgBtnNameFragmentMyProfile,
             imgBtnLastnameFragmentMyProfile,
@@ -31,6 +36,8 @@ public class MyProfileFragment extends Fragment {
     EditText edtUpdateFragmentMyProfile;
 
     Button btnUpdateFragmentMyProfile;
+    SqliteHelper sqliteHelper;
+    SQLiteDatabase db;
 
     public MyProfileFragment() {
         // Required empty public constructor
@@ -47,12 +54,11 @@ public class MyProfileFragment extends Fragment {
         imgBtnNameFragmentMyProfile = (ImageView) view.findViewById(R.id.imgBtnNameFragmentMyProfile);
         imgBtnLastnameFragmentMyProfile = (ImageView) view.findViewById(R.id.imgBtnLastnameFragmentMyProfile);
         imgBtnUsernameFragmentMyProfile = (ImageView) view.findViewById(R.id.imgBtnUsernameFragmentMyProfile);
-
         txtLastnameFragmentMyProfile = (TextView) view.findViewById(R.id.txtLastnameFragmentMyProfile);
         txtNameFragmentMyProfile = (TextView) view.findViewById(R.id.txtNameFragmentMyProfile);
         txtUsernameFragmentMyProfile = (TextView) view.findViewById(R.id.txtUsernameFragmentMyProfile);
-
         edtUpdateFragmentMyProfile = (EditText) view.findViewById(R.id.edtUpdateFragmentMyProfile);
+        sqliteHelper = new SqliteHelper(getActivity(), "DB_CAMP_FOOTBALL", null, 1);
 
 
         imgBtnNameFragmentMyProfile.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +85,7 @@ public class MyProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                flagOfUpdate=3;
+                flagOfUpdate = 3;
                 edtUpdateFragmentMyProfile.setText(txtUsernameFragmentMyProfile.getText().toString());
 
             }
@@ -98,10 +104,31 @@ public class MyProfileFragment extends Fragment {
         });
 
 
+        userData();
+
         return view;
 
     }
 
+    public void userData() {
+
+        db = sqliteHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT NAME, LAST_NAME, USER_NAME FROM USER WHERE USER.ID =" + IdUser.getIdUser(), null);
+
+        try {
+            while (cursor.moveToNext()) {
+
+                txtNameFragmentMyProfile.setText(cursor.getString(0));
+                txtLastnameFragmentMyProfile.setText(cursor.getString(1));
+                txtUsernameFragmentMyProfile.setText(cursor.getString(2));
+            }
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "el usuario no existe", Toast.LENGTH_SHORT).show();
+
+        }
+        db.close();
+
+    }
 
     public void updateMyProfile() {
         switch (flagOfUpdate) {
@@ -111,20 +138,42 @@ public class MyProfileFragment extends Fragment {
                 break;
             case 1:
 //colocar el metodo para actualizar el nombre de el usuario
+                updateName();
                 Toast.makeText(getActivity(), "Your Name was updated successfully", Toast.LENGTH_SHORT).show();
                 break;
             case 2:
 //colocar el metodo para actualizar el apellido de el usuario
+                updateLastName();
                 Toast.makeText(getActivity(), "Your Lastname was updated successfully", Toast.LENGTH_SHORT).show();
                 break;
             case 3:
 //colocar el metodo para actua.izar el nombre-de-usuario de el usuario
+                updateUserName();
                 Toast.makeText(getActivity(), "Your Username was updated successfully", Toast.LENGTH_SHORT).show();
                 break;
 
         }
 
+
     }
 
+
+    public void updateName() {
+        db = sqliteHelper.getReadableDatabase();
+
+        db.execSQL("UPDATE USER SET NAME = '" + edtUpdateFragmentMyProfile.getText() + "' WHERE ID =" + IdUser.getIdUser());
+    }
+
+    public void updateLastName() {
+        db = sqliteHelper.getReadableDatabase();
+
+        db.execSQL("UPDATE USER SET LAST_NAME = '" + edtUpdateFragmentMyProfile.getText() + "' WHERE ID =" + IdUser.getIdUser());
+    }
+
+    public void updateUserName() {
+        db = sqliteHelper.getReadableDatabase();
+
+        db.execSQL("UPDATE USER SET USER_NAME = '" + edtUpdateFragmentMyProfile.getText() + "' WHERE ID =" + IdUser.getIdUser());
+    }
 
 }
