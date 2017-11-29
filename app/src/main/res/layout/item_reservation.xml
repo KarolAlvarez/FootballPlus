@@ -80,13 +80,53 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtTimeFieldItemReservarion"
+                android:id="@+id/txtHourEndItemReservarion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="hora de salida"
                 android:textSize="18sp" />
 
         </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5sp"
+                android:text="@string/Date"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtDateItemReservarion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha de resrvacion"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
