@@ -36,10 +36,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/colorPrimaryDark"
                     android:layout_margin="10dp"
-                    />
+                    app:civ_border_color="@color/colorPrimaryDark"
+                    app:civ_border_width="1dp" />
 
 
             </RelativeLayout>
@@ -59,119 +58,152 @@
                 android:layout_weight="0.8"
                 android:orientation="vertical">
 
-                <LinearLayout
-
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="6dp"
-                        android:text="@string/Namep"
-                        android:textColor="@android:color/black"
-                        android:textSize="24dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtNameFragmentMyProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="6dp"
-                        android:text="Nombre de usuario"
-                        android:textColor="@android:color/black"
-                        android:textSize="18dp"
-                        android:textStyle="italic" />
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/imgBtnNameFragmentMyProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/border_button_my_profile"
-                        android:src="@drawable/plume" />
+                        android:layout_margin="4dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+
+                        android:src="@drawable/pencil" />
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_toLeftOf="@id/imgBtnNameFragmentMyProfile"
+                  >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:text="@string/Namep"
+                            android:textColor="@android:color/black"
+                            android:textSize="24dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtNameFragmentMyProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:text="Nombre de usuario"
+                            android:textColor="@android:color/black"
+                            android:textSize="18dp"
+                            android:textStyle="italic" />
 
 
-                </LinearLayout>
 
-                <LinearLayout
 
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+
+
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="6dp"
-                        android:text="@string/Lastnamep"
-                        android:textColor="@android:color/black"
-                        android:textSize="24dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtLastnameFragmentMyProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="6dp"
-                        android:text="Lastname"
-                        android:textColor="@android:color/black"
-                        android:textSize="18dp"
-                        android:textStyle="italic" />
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/imgBtnLastnameFragmentMyProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/border_button_my_profile"
-                        android:src="@drawable/plume"
+                        android:layout_margin="4dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/pencil"
 
                         />
 
+                    <LinearLayout
 
-                </LinearLayout>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/imgBtnLastnameFragmentMyProfile"
+                        android:orientation="horizontal">
 
-                <LinearLayout
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:text="@string/Lastnamep"
+                            android:textColor="@android:color/black"
+                            android:textSize="24dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtLastnameFragmentMyProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:text="Lastname"
+                            android:textColor="@android:color/black"
+                            android:textSize="18dp"
+                            android:textStyle="italic" />
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="6dp"
-                        android:text="@string/Usernamep"
-                        android:textColor="@android:color/black"
-                        android:textSize="24dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtUsernameFragmentMyProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="6dp"
-                        android:text="Username"
-                        android:textColor="@android:color/black"
-                        android:textSize="18dp"
-                        android:textStyle="italic" />
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/imgBtnUsernameFragmentMyProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:background="@drawable/border_button_my_profile"
-                        android:src="@drawable/plume"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/pencil"
 
                         />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/imgBtnUsernameFragmentMyProfile"
+                        android:orientation="horizontal">
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:text="@string/Usernamep"
+                            android:textColor="@android:color/black"
+                            android:textSize="24dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtUsernameFragmentMyProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="6dp"
+                            android:text="Username"
+                            android:textColor="@android:color/black"
+                            android:textSize="18dp"
+                            android:textStyle="italic" />
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
 
 
                 <LinearLayout
