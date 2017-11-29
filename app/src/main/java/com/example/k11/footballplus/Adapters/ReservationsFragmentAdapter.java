@@ -1,6 +1,7 @@
 package com.example.k11.footballplus.Adapters;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.k11.footballplus.Helpers.SqliteHelper;
 import com.example.k11.footballplus.Models.Reservations;
 import com.example.k11.footballplus.R;
 
@@ -46,6 +48,23 @@ public class ReservationsFragmentAdapter extends RecyclerView.Adapter<Reservatio
         holder.txtAddressItemReservarion.setText(reservationsList.get(position).getAddresCampReservation());
         holder.txtPhoneItemReservarion.setText(Integer.toString(reservationsList.get(position).getPhoneCampReservation()));
 
+        holder.btnRemoveItemReservarion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SqliteHelper sqliteHelper;
+
+                sqliteHelper = new SqliteHelper(view.getContext(), "DB_CAMP_FOOTBALL", null, 1);
+
+                SQLiteDatabase db = sqliteHelper.getReadableDatabase();
+                db.execSQL("DELETE FROM RESERVATION WERE ID = '"+reservationsList.get(position).getIdReservations()+"'");
+
+
+
+            }
+        });
+
+
     }
 
     @Override
@@ -58,7 +77,7 @@ public class ReservationsFragmentAdapter extends RecyclerView.Adapter<Reservatio
                 txtHourEndItemReservarion, txtAddressItemReservarion,
                 txtPhoneItemReservarion, txtDateItemReservarion;
 
-        Button txtRemoveItemReservarion;
+        Button btnRemoveItemReservarion;
 
         public ViewHolder(View item) {
             super(item);
@@ -67,7 +86,7 @@ public class ReservationsFragmentAdapter extends RecyclerView.Adapter<Reservatio
             txtHourEndItemReservarion = (TextView) item.findViewById(R.id.txtHourEndItemReservarion);
             txtAddressItemReservarion = (TextView) item.findViewById(R.id.txtAddressItemReservarion);
             txtPhoneItemReservarion = (TextView) item.findViewById(R.id.txtPhoneItemReservarion);
-            txtRemoveItemReservarion = (Button) item.findViewById(R.id.txtRemoveItemReservarion);
+            btnRemoveItemReservarion = (Button) item.findViewById(R.id.btnRemoveItemReservarion);
             txtDateItemReservarion = (TextView) item.findViewById(R.id.txtDateItemReservarion);
         }
 

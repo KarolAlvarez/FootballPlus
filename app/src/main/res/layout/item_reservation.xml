@@ -179,7 +179,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/txtRemoveItemReservarion"
+        android:id="@+id/btnRemoveItemReservarion"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="bottom|right"
