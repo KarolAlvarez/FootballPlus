@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -12,11 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.k11.footballplus.Helpers.SqliteHelper;
-import com.example.k11.footballplus.Session.Session;
+
+
+import com.example.k11.footballplus.Models.Users;
 import com.example.k11.footballplus.Utilities.Constants;
 import com.example.k11.footballplus.Utilities.IdUser;
 import com.example.k11.footballplus.Views.CreateUserActivity;
 import com.example.k11.footballplus.Views.ListFieldSoccerActivity;
+import com.example.k11.footballplus.Views.Session;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,12 +28,16 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtUserNameLogin, edtUserPasswordLogin;
     private Button btnEnter;
     private SqliteHelper sqliteHelper;
-    private Session session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        Session a= new Session(this);
+        if(a.loggedin()){
+            startActivity(new Intent(LoginActivity.this, ListFieldSoccerActivity.class));
+            finish();
+        }
         sqliteHelper = new SqliteHelper(this, "DB_CAMP_FOOTBALL", null, 1);
         txtBtnCreateUser = (TextView) findViewById(R.id.txt_BtnCreateUser);
 
@@ -43,7 +51,8 @@ public class LoginActivity extends AppCompatActivity {
                 //guardar id de el usuario que ingresa
 
                // IdUser.setIdUser(1);
-getUser(edtUserNameLogin.getText().toString(),edtUserPasswordLogin.getText().toString());
+
+                login();
                 //Intent intent = new Intent(view.getContext(), ListFieldSoccerActivity.class);
                 //startActivity(intent);
 
@@ -63,20 +72,22 @@ getUser(edtUserNameLogin.getText().toString(),edtUserPasswordLogin.getText().toS
 
 
     }
-    public boolean getUser(String name, String pass){
-
+    public boolean getUser(String name, Integer pass){
+int id=0;
         String selectQuery = "select * from  " + Constants.TABLA_NAME_USER + " where " +
               Constants.TABLA_USER_USERNAME+ " = " + "'"+name+"'" + " and " + Constants.TABLA_USER_PIN + " = " + pass;
 
         SQLiteDatabase db =  sqliteHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         while(cursor.moveToNext()){
-            if (cursor.getCount() > 0) {
-                Intent intent = new Intent(this, ListFieldSoccerActivity.class);
-                //  intent.putExtra("email",email);
-                startActivity(intent);
-                return true;
 
+            //Users users = new Users();
+            //users.setId(cursor.getInt(0));
+
+
+            if (cursor.getCount() > 0) {
+
+                return true;
             }
 
         }
@@ -86,6 +97,22 @@ getUser(edtUserNameLogin.getText().toString(),edtUserPasswordLogin.getText().toS
 
         return false;
     }
+    private void login(){
+       Session a= new Session(this);
+        String name = edtUserNameLogin .getText().toString();
+        Integer pass =Integer.parseInt(edtUserPasswordLogin .getText().toString()) ;
 
+
+        if(getUser(name,pass)){
+           a.setLoggedin(true,name,pass);
+            Intent intent = new Intent(this, ListFieldSoccerActivity.class);
+            //  intent.putExtra("email",email);
+            startActivity(intent);
+
+            finish();
+        }else{
+            Toast.makeText(getApplicationContext(), "Error de autenticacion",Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }

@@ -20,6 +20,7 @@ import com.example.k11.footballplus.LoginActivity;
 import com.example.k11.footballplus.Models.CampFootball;
 import com.example.k11.footballplus.R;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,6 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
     private CheckBox checkboxFavoriteItemListFieldSoccer;
     private ImageView imagen;
     private Button BtnCommentItemListFieldSoccer, BtnReserveItemListFieldSoccer;
-
 
     RecyclerView recyclerViewContactsListFieldSoccer;
     ListFieldSoccerAdapter listFieldSoccerAdapter;
@@ -39,10 +39,16 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_field_soccer);
+        sqliteHelper = new SqliteHelper(this, "DB_CAMP_FOOTBALL", null, 1);
 
+
+        Session a = new Session(this);
+        if(!a.loggedin()){
+            logout();
+        }
 
         recyclerViewContactsListFieldSoccer = (RecyclerView) findViewById(R.id.recyclerViewContactsListFieldSoccer);
-        sqliteHelper = new SqliteHelper(this, "DB_CAMP_FOOTBALL", null, 1);
+
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -79,12 +85,19 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
 //
 // ############################### metodo para cerrar sesion  ###############################
 
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+            SignOff();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void SignOff(){
+        Session logut =new Session(this);
+
+        logut.setLoggedin(false,null,null);
+        finish();
+        startActivity(new Intent(this,LoginActivity.class));
     }
 
     public void listCamp() {
@@ -132,6 +145,13 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
         // txtNameFragmentMyProfile.setText(""+cursor.getString(1));
         // txtUsernameFragmentMyProfile.setText(""+cursor.getString(2));
 
+    }
+
+    private void logout(){
+        Session a= new Session(this);
+        a.setLoggedin(false,null,null);
+        finish();
+        startActivity(new Intent(this,LoginActivity.class));
     }
 
 }
