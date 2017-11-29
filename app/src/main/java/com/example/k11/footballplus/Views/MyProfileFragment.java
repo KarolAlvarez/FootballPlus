@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.k11.footballplus.Helpers.SqliteHelper;
 import com.example.k11.footballplus.R;
 import com.example.k11.footballplus.Utilities.IdUser;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +29,8 @@ public class MyProfileFragment extends Fragment {
 
     ImageView imgBtnNameFragmentMyProfile,
             imgBtnLastnameFragmentMyProfile,
-            imgBtnUsernameFragmentMyProfile;
+            imgBtnUsernameFragmentMyProfile,
+            imgItemListFieldSoccerProfile;
 
     TextView txtLastnameFragmentMyProfile,
             txtNameFragmentMyProfile,
@@ -58,6 +60,10 @@ public class MyProfileFragment extends Fragment {
         txtNameFragmentMyProfile = (TextView) view.findViewById(R.id.txtNameFragmentMyProfile);
         txtUsernameFragmentMyProfile = (TextView) view.findViewById(R.id.txtUsernameFragmentMyProfile);
         edtUpdateFragmentMyProfile = (EditText) view.findViewById(R.id.edtUpdateFragmentMyProfile);
+        edtUpdateFragmentMyProfile.setVisibility(View.INVISIBLE);
+
+
+        imgItemListFieldSoccerProfile = (ImageView) view.findViewById(R.id.imgItemListFieldSoccerProfile);
         sqliteHelper = new SqliteHelper(getActivity(), "DB_CAMP_FOOTBALL", null, 1);
 
 
@@ -65,7 +71,8 @@ public class MyProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 flagOfUpdate = 1;
-
+                edtUpdateFragmentMyProfile.setVisibility(View.VISIBLE);
+                btnUpdateFragmentMyProfile.setVisibility(view.VISIBLE);
                 edtUpdateFragmentMyProfile.setText(txtNameFragmentMyProfile.getText().toString());
 
             }
@@ -75,6 +82,7 @@ public class MyProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 flagOfUpdate = 2;
+                edtUpdateFragmentMyProfile.setVisibility(View.VISIBLE);
 
                 edtUpdateFragmentMyProfile.setText(txtLastnameFragmentMyProfile.getText().toString());
 
@@ -86,6 +94,8 @@ public class MyProfileFragment extends Fragment {
             public void onClick(View view) {
 
                 flagOfUpdate = 3;
+                edtUpdateFragmentMyProfile.setVisibility(View.VISIBLE);
+
                 edtUpdateFragmentMyProfile.setText(txtUsernameFragmentMyProfile.getText().toString());
 
             }
@@ -98,6 +108,8 @@ public class MyProfileFragment extends Fragment {
             public void onClick(View view) {
 
                 updateMyProfile();
+                edtUpdateFragmentMyProfile.setVisibility(View.INVISIBLE);
+
                 flagOfUpdate = 0;
                 edtUpdateFragmentMyProfile.setText("");
             }
@@ -113,7 +125,7 @@ public class MyProfileFragment extends Fragment {
     public void userData() {
 
         db = sqliteHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT NAME, LAST_NAME, USER_NAME FROM USER WHERE USER.ID =" + IdUser.getIdUser(), null);
+        Cursor cursor = db.rawQuery("SELECT NAME, LAST_NAME, USER_NAME,IMAGE FROM USER WHERE USER.ID =" + IdUser.getIdUser(), null);
 
         try {
             while (cursor.moveToNext()) {
@@ -121,6 +133,10 @@ public class MyProfileFragment extends Fragment {
                 txtNameFragmentMyProfile.setText(cursor.getString(0));
                 txtLastnameFragmentMyProfile.setText(cursor.getString(1));
                 txtUsernameFragmentMyProfile.setText(cursor.getString(2));
+
+                Picasso.with(getActivity()).load(cursor.getString(3)).into(imgItemListFieldSoccerProfile);
+
+
             }
         } catch (Exception e) {
             Toast.makeText(getActivity(), "el usuario no existe", Toast.LENGTH_SHORT).show();
@@ -162,18 +178,22 @@ public class MyProfileFragment extends Fragment {
         db = sqliteHelper.getReadableDatabase();
 
         db.execSQL("UPDATE USER SET NAME = '" + edtUpdateFragmentMyProfile.getText() + "' WHERE ID =" + IdUser.getIdUser());
+        userData();
     }
 
     public void updateLastName() {
         db = sqliteHelper.getReadableDatabase();
 
         db.execSQL("UPDATE USER SET LAST_NAME = '" + edtUpdateFragmentMyProfile.getText() + "' WHERE ID =" + IdUser.getIdUser());
+        userData();
     }
 
     public void updateUserName() {
         db = sqliteHelper.getReadableDatabase();
 
         db.execSQL("UPDATE USER SET USER_NAME = '" + edtUpdateFragmentMyProfile.getText() + "' WHERE ID =" + IdUser.getIdUser());
+        userData();
+
     }
 
 }
