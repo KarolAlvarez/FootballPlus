@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView txtBtnCreateUser;
     private EditText edtUserNameLogin, edtUserPasswordLogin;
     private Button btnEnter;
-    SqliteHelper sqliteHelper;
+    private SqliteHelper sqliteHelper;
     private Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                 //guardar id de el usuario que ingresa
 
                // IdUser.setIdUser(1);
-
-                login();
+getUser(edtUserNameLogin.getText().toString(),edtUserPasswordLogin.getText().toString());
                 //Intent intent = new Intent(view.getContext(), ListFieldSoccerActivity.class);
                 //startActivity(intent);
 
@@ -67,14 +66,17 @@ public class LoginActivity extends AppCompatActivity {
     public boolean getUser(String name, String pass){
 
         String selectQuery = "select * from  " + Constants.TABLA_NAME_USER + " where " +
-              Constants.TABLA_USER_USERNAME+ " = " + "'"+name+"'" + " and " + Constants.TABLA_USER_PIN + " = " + "'"+pass+"'";
+              Constants.TABLA_USER_USERNAME+ " = " + "'"+name+"'" + " and " + Constants.TABLA_USER_PIN + " = " + pass;
 
         SQLiteDatabase db =  sqliteHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         while(cursor.moveToNext()){
             if (cursor.getCount() > 0) {
-
+                Intent intent = new Intent(this, ListFieldSoccerActivity.class);
+                //  intent.putExtra("email",email);
+                startActivity(intent);
                 return true;
+
             }
 
         }
@@ -84,20 +86,6 @@ public class LoginActivity extends AppCompatActivity {
 
         return false;
     }
-    private void login(){
-        String name = edtUserNameLogin .getText().toString();
-        String pass = edtUserPasswordLogin .getText().toString();
 
-        if(getUser(name,pass)){
-            session.setLoggedin(true,name,pass);
-            Intent intent = new Intent(LoginActivity.this, ListFieldSoccerActivity.class);
-            //  intent.putExtra("email",email);
-            startActivity(intent);
-
-            finish();
-        }else{
-            Toast.makeText(getApplicationContext(), "Error de autenticacion",Toast.LENGTH_SHORT).show();
-        }
-    }
 
 }
