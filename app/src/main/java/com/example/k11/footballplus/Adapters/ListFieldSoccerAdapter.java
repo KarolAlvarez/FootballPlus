@@ -2,7 +2,6 @@ package com.example.k11.footballplus.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.provider.Contacts;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,11 +56,8 @@ public class ListFieldSoccerAdapter extends RecyclerView.Adapter<ListFieldSoccer
             @Override
             public void onClick(View view) {
 
-
-
                 Intent intent = new Intent(view.getContext(), FieldActivity.class);
-                intent.putExtra("idCamp",campFootballList.get(position).getId());
-
+                intent.putExtra("idCamp", campFootballList.get(position).getId());
                 context.startActivity(intent);
             }
         });
@@ -71,7 +67,10 @@ public class ListFieldSoccerAdapter extends RecyclerView.Adapter<ListFieldSoccer
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ReservationActivity.class);
+
+
                 context.startActivity(intent);
+
                 Toast.makeText(view.getContext(), "reservar cancha", Toast.LENGTH_SHORT).show();
             }
         });
@@ -81,9 +80,8 @@ public class ListFieldSoccerAdapter extends RecyclerView.Adapter<ListFieldSoccer
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), CommentActivity.class);
+                intent.putExtra("idCamp", campFootballList.get(position).getId());
                 context.startActivity(intent);
-
-                Toast.makeText(view.getContext(), "crear comentario", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -119,7 +117,7 @@ public class ListFieldSoccerAdapter extends RecyclerView.Adapter<ListFieldSoccer
             txtNameFieldSoccer = (TextView) item.findViewById(R.id.txtNameFieldSoccer);
             txtDescriptionFieldSoccer = (TextView) item.findViewById(R.id.txtDescriptionFieldSoccer);
             checkboxFavoriteItemListFieldSoccer = (CheckBox) item.findViewById(R.id.checkboxFavoriteItemListFieldSoccer);
-            imgItemListFieldSoccerProfile=(ImageView)item.findViewById(R.id.imgItemListFieldSoccerProfile);
+            imgItemListFieldSoccerProfile = (ImageView) item.findViewById(R.id.imgItemListFieldSoccerProfile);
             btnReserveItemListFieldSoccer = (Button) item.findViewById(R.id.btnReserveItemListFieldSoccer);
             btnCommentItemListFieldSoccer = (Button) item.findViewById(R.id.btnCommentItemListFieldSoccer);
         }
