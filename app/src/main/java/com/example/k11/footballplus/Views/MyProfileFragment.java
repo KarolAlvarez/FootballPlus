@@ -167,9 +167,7 @@ public class MyProfileFragment extends Fragment {
                 updateUserName();
                 Toast.makeText(getActivity(), "Your Username was updated successfully", Toast.LENGTH_SHORT).show();
                 break;
-
         }
-
 
     }
 
