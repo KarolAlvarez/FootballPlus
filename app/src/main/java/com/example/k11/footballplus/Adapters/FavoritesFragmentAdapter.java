@@ -94,6 +94,7 @@ public class FavoritesFragmentAdapter extends RecyclerView.Adapter<FavoritesFrag
                 Intent intent = new Intent(view.getContext(), ReservationActivity.class);
 
                 intent.putExtra("idCamp", favoritesList.get(position).getIdCamp());
+                intent.putExtra("nameCamp", favoritesList.get(position).getNameCamp());
 
                 context.startActivity(intent);
 

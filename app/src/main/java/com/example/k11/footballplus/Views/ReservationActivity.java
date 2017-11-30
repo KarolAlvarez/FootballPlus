@@ -24,7 +24,7 @@ import com.example.k11.footballplus.Utilities.IdUser;
 import java.util.Calendar;
 
 public class ReservationActivity extends AppCompatActivity {
-    TextView txtDateActivityReservation;
+    TextView txtDateActivityReservation,txtNameFieldReservationActivity;
     Button btnDateActivityReservation,
             btnReserveActivityReservation;
     private int day, month, year, idCamp, sw;
@@ -53,6 +53,8 @@ public class ReservationActivity extends AppCompatActivity {
         btnDateActivityReservation = (Button) findViewById(R.id.btnDateActivityReservation);
         btnReserveActivityReservation = (Button) findViewById(R.id.btnReserveActivityReservation);
 
+        txtNameFieldReservationActivity=(TextView)findViewById(R.id.txtNameFieldReservationActivity) ;
+
         sqliteHelper = new SqliteHelper(this, "DB_CAMP_FOOTBALL", null, 1);
 
 
@@ -63,6 +65,8 @@ public class ReservationActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         idCamp = bundle.getInt("idCamp");
+        txtNameFieldReservationActivity.setText(bundle.getString("nameCamp"));
+
 
         groupRadioButonActivityReservation = (RadioGroup) findViewById(R.id.groupRadioButonActivityReservation);
         groupRadioButonActivityReservation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

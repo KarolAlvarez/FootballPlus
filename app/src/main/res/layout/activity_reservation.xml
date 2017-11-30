@@ -18,6 +18,7 @@
         android:padding="2dp">
 
         <TextView
+            android:id="@+id/txtNameFieldReservationActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"

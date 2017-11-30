@@ -98,6 +98,7 @@ public class ListFieldSoccerAdapter extends RecyclerView.Adapter<ListFieldSoccer
                 Intent intent = new Intent(view.getContext(), ReservationActivity.class);
 
                 intent.putExtra("idCamp", campFootballList.get(position).getId());
+                intent.putExtra("nameCamp", campFootballList.get(position).getName());
 
                 context.startActivity(intent);
 
