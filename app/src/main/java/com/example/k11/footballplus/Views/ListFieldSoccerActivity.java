@@ -124,8 +124,6 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
 
         if (campFootballList.size() != 0) {
             processData();
-        } else {
-            Toast.makeText(this, "Lista vacia", Toast.LENGTH_SHORT).show();
         }
     }
 
