@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,6 @@ import com.example.k11.footballplus.R;
 import com.example.k11.footballplus.Utilities.Constants;
 import com.example.k11.footballplus.Utilities.IdUser;
 import com.example.k11.footballplus.Views.CommentActivity;
-import com.example.k11.footballplus.Views.FavoritesFragment;
 import com.example.k11.footballplus.Views.FieldActivity;
 import com.example.k11.footballplus.Views.PerfilUserActivity;
 import com.example.k11.footballplus.Views.ReservationActivity;
@@ -61,7 +59,6 @@ public class FavoritesFragmentAdapter extends RecyclerView.Adapter<FavoritesFrag
         Picasso.with(context).load(favoritesList.get(position).getImageCamp()).into((holder.imgItemListFieldSoccerProfile));
 
 
-
         SqliteHelper sqliteHelper;
         SQLiteDatabase db;
 
@@ -69,16 +66,15 @@ public class FavoritesFragmentAdapter extends RecyclerView.Adapter<FavoritesFrag
 
         db = sqliteHelper.getWritableDatabase();
 
-      Cursor cursor= db.rawQuery("SELECT * FROM FAVOURITE WHERE ID_USER ="+IdUser.getIdUser()+" AND ID_CAMP ="+favoritesList.get(position).getIdCamp(),null);
+        Cursor cursor = db.rawQuery("SELECT * FROM FAVOURITE WHERE ID_USER =" + IdUser.getIdUser() + " AND ID_CAMP =" + favoritesList.get(position).getIdCamp(), null);
 
-      if (cursor.getCount()!=0){
+        if (cursor.getCount() != 0) {
 
-          holder.checkboxFavoriteItemListFieldSoccer.setChecked(true);
+            holder.checkboxFavoriteItemListFieldSoccer.setChecked(true);
 
-          Toast.makeText(context,"hay datos",Toast.LENGTH_SHORT).show();
-      }else {
-          holder.checkboxFavoriteItemListFieldSoccer.setChecked(false);
-      }
+        } else {
+            holder.checkboxFavoriteItemListFieldSoccer.setChecked(false);
+        }
 
 
         holder.imgItemListFieldSoccerProfile.setOnClickListener(new View.OnClickListener() {
@@ -124,8 +120,6 @@ public class FavoritesFragmentAdapter extends RecyclerView.Adapter<FavoritesFrag
                 sqliteHelper = new SqliteHelper(context, "DB_CAMP_FOOTBALL", null, 1);
 
 
-
-
                 if (holder.checkboxFavoriteItemListFieldSoccer.isChecked()) {
                     Toast.makeText(view.getContext(), "I saved as favorite", Toast.LENGTH_SHORT).show();
                     //se debe agregar en favorito
@@ -142,9 +136,9 @@ public class FavoritesFragmentAdapter extends RecyclerView.Adapter<FavoritesFrag
 
                     //la base de datos eliminar de favorito
                     db = sqliteHelper.getWritableDatabase();
-                    db.execSQL("DELETE FROM FAVOURITE WHERE ID_USER = "+IdUser.getIdUser()+" AND ID_CAMP = "+favoritesList.get(position).getIdCamp());
+                    db.execSQL("DELETE FROM FAVOURITE WHERE ID_USER = " + IdUser.getIdUser() + " AND ID_CAMP = " + favoritesList.get(position).getIdCamp());
 
-                    Intent intent= new Intent(context, PerfilUserActivity.class);
+                    Intent intent = new Intent(context, PerfilUserActivity.class);
                     context.startActivity(intent);
 
                 }

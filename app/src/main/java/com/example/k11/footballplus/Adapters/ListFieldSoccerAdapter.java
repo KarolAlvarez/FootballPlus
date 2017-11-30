@@ -73,7 +73,6 @@ public class ListFieldSoccerAdapter extends RecyclerView.Adapter<ListFieldSoccer
 
             holder.checkboxFavoriteItemListFieldSoccer.setChecked(true);
 
-            Toast.makeText(context,"hay datos",Toast.LENGTH_SHORT).show();
         }else {
             holder.checkboxFavoriteItemListFieldSoccer.setChecked(false);
         }
