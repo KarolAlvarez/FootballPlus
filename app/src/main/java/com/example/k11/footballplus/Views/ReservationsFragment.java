@@ -15,6 +15,7 @@ import com.example.k11.footballplus.Adapters.ReservationsFragmentAdapter;
 import com.example.k11.footballplus.Helpers.SqliteHelper;
 import com.example.k11.footballplus.Models.Reservations;
 import com.example.k11.footballplus.R;
+import com.example.k11.footballplus.Utilities.IdUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,7 @@ public class ReservationsFragment extends Fragment {
                     "CAMP.ADDRESS,CAMP.PHONE " +
                     "FROM RESERVATION INNER JOIN USER ON RESERVATION.ID_USER=USER.ID " +
                     "INNER JOIN CAMP ON RESERVATION.ID_CAMP=CAMP.ID" +
-                    " WHERE RESERVATION.ID_USER =1 GROUP BY RESERVATION.ID", null);
+                    " WHERE RESERVATION.ID_USER ="+ IdUser.getIdUser()+" GROUP BY RESERVATION.ID", null);
 
 
 

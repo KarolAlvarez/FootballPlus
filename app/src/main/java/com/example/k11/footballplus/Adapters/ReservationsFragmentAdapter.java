@@ -1,6 +1,7 @@
 package com.example.k11.footballplus.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.example.k11.footballplus.Helpers.SqliteHelper;
 import com.example.k11.footballplus.Models.Reservations;
 import com.example.k11.footballplus.R;
+import com.example.k11.footballplus.Views.PerfilUserActivity;
+import com.example.k11.footballplus.Views.ReservationsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,11 +57,14 @@ public class ReservationsFragmentAdapter extends RecyclerView.Adapter<Reservatio
 
                 SqliteHelper sqliteHelper;
 
-                sqliteHelper = new SqliteHelper(view.getContext(), "DB_CAMP_FOOTBALL", null, 1);
+                sqliteHelper = new SqliteHelper(context, "DB_CAMP_FOOTBALL", null, 1);
 
                 SQLiteDatabase db = sqliteHelper.getReadableDatabase();
-                db.execSQL("DELETE FROM RESERVATION WERE ID = '"+reservationsList.get(position).getIdReservations()+"'");
 
+                db.delete("RESERVATION ", "ID = " + reservationsList.get(position).getIdReservations(), null);
+
+                Intent intent = new Intent(context, PerfilUserActivity.class);
+                context.startActivity(intent);
 
 
             }
