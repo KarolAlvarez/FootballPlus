@@ -61,7 +61,7 @@ public class ReservationsFragment extends Fragment {
                     "CAMP.ADDRESS,CAMP.PHONE " +
                     "FROM RESERVATION INNER JOIN USER ON RESERVATION.ID_USER=USER.ID " +
                     "INNER JOIN CAMP ON RESERVATION.ID_CAMP=CAMP.ID" +
-                    " WHERE RESERVATION.ID_USER ="+ IdUser.getIdUser()+" GROUP BY RESERVATION.ID", null);
+                    " WHERE RESERVATION.ID_USER ="+ IdUser.getIdUser()+" GROUP BY RESERVATION.ID ORDER BY RESERVATION.START_TIME", null);
 
 
 

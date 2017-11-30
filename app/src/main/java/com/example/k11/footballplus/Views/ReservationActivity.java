@@ -151,6 +151,7 @@ public class ReservationActivity extends AppCompatActivity {
             case 1:
                 if (cursor.getCount() != 0) {
                     Toast.makeText(this, "el registro ya existe", Toast.LENGTH_SHORT).show();
+                    groupRadioButonActivityReservation.clearCheck();
                 } else {
                     ContentValues values = new ContentValues();
                     values.put(Constants.TABLA_RESERVATION_ID_USER, IdUser.getIdUser());
@@ -161,11 +162,14 @@ public class ReservationActivity extends AppCompatActivity {
                     db.insert(Constants.TABLA_NAME_RESERVATION, Constants.TABLA_RESERVATION_ID, values);
                     finish();
                     db.close();
+
+
                 }
                 break;
             case 2:
                 if ((cursor.getCount() != 0) || (cursor2.getCount() != 0)) {
                     Toast.makeText(this, "horario no disponible", Toast.LENGTH_SHORT).show();
+                    groupRadioButonActivityReservation.clearCheck();
                 } else {
                     ContentValues values = new ContentValues();
                     values.put(Constants.TABLA_RESERVATION_ID_USER, IdUser.getIdUser());
