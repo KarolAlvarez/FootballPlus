@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //guardar id de el usuario que ingresa
 
+
                 // IdUser.setIdUser(1);
                 if (edtUserNameLogin.getText().toString().isEmpty() || edtUserPasswordLogin.getText().toString().isEmpty()) {
                     Toast.makeText(view.getContext(), "the field username or password are empty", Toast.LENGTH_SHORT).show();
