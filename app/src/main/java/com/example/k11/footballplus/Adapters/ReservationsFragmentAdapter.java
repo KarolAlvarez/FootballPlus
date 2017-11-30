@@ -55,16 +55,13 @@ public class ReservationsFragmentAdapter extends RecyclerView.Adapter<Reservatio
             public void onClick(View view) {
 
                 SqliteHelper sqliteHelper;
-
                 sqliteHelper = new SqliteHelper(context, "DB_CAMP_FOOTBALL", null, 1);
-
                 SQLiteDatabase db = sqliteHelper.getReadableDatabase();
-
                 db.delete("RESERVATION ", "ID = " + reservationsList.get(position).getIdReservations(), null);
 
                 Intent intent = new Intent(context, PerfilUserActivity.class);
-
                 context.startActivity(intent);
+
 
             }
         });
