@@ -48,11 +48,9 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
         IdUser.setIdUser(ides);
 
 
-        HashMap<String, String> name = a.getUserDetails();
-        String names = name.get(Session.KEY_NAME);
-
-
-        Toast.makeText(this, "" + names + ides, Toast.LENGTH_SHORT).show();
+//      HashMap<String, String> name = a.getUserDetails();
+//      String names = name.get(Session.KEY_NAME);
+//      Toast.makeText(this, "" + names + ides, Toast.LENGTH_SHORT).show();
 
         recyclerViewContactsListFieldSoccer = (RecyclerView) findViewById(R.id.recyclerViewContactsListFieldSoccer);
 
