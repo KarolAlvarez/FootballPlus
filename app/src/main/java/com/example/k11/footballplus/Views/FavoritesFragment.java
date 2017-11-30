@@ -81,8 +81,6 @@ public class FavoritesFragment extends Fragment {
 
         if (favoritesList.size() != 0) {
             processData();
-        } else {
-            Toast.makeText(getActivity(), "Lista vacia", Toast.LENGTH_SHORT).show();
         }
     }
 
