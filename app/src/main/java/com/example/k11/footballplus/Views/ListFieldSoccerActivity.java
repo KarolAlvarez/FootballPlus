@@ -9,9 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.k11.footballplus.Adapters.ListFieldSoccerAdapter;
@@ -21,21 +18,17 @@ import com.example.k11.footballplus.Models.CampFootball;
 import com.example.k11.footballplus.R;
 import com.example.k11.footballplus.Utilities.IdUser;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class ListFieldSoccerActivity extends AppCompatActivity {
-    private CheckBox checkboxFavoriteItemListFieldSoccer;
-    private ImageView imagen;
-    private Button BtnCommentItemListFieldSoccer, BtnReserveItemListFieldSoccer;
-private Session session;
+
+    private Session session;
     RecyclerView recyclerViewContactsListFieldSoccer;
     ListFieldSoccerAdapter listFieldSoccerAdapter;
     List<CampFootball> campFootballList = new ArrayList<>();
     SqliteHelper sqliteHelper;
-
 
 
     @Override
@@ -46,23 +39,22 @@ private Session session;
 
 
         Session a = new Session(this);
-        if(!a.loggedin()){
+        if (!a.loggedin()) {
             logout();
         }
 
         HashMap<Integer, Integer> ide = a.getUserIde();
-        Integer ides=ide.get(Session.KEY_ID);
+        Integer ides = ide.get(Session.KEY_ID);
         IdUser.setIdUser(ides);
 
 
         HashMap<String, String> name = a.getUserDetails();
-       String names=name.get(Session.KEY_NAME);
+        String names = name.get(Session.KEY_NAME);
 
 
-       Toast.makeText(this, ""+names+ides, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + names + ides, Toast.LENGTH_SHORT).show();
 
         recyclerViewContactsListFieldSoccer = (RecyclerView) findViewById(R.id.recyclerViewContactsListFieldSoccer);
-
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -70,7 +62,6 @@ private Session session;
         recyclerViewContactsListFieldSoccer.setLayoutManager(linearLayoutManager);
 
         listCamp();
-
 
 
     }
@@ -108,12 +99,12 @@ private Session session;
         return super.onOptionsItemSelected(item);
     }
 
-    private void SignOff(){
-        Session logut =new Session(this);
+    private void SignOff() {
+        Session logut = new Session(this);
 
-        logut.setLoggedin(false,null,null);
+        logut.setLoggedin(false, null, null);
         finish();
-        startActivity(new Intent(this,LoginActivity.class));
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     public void listCamp() {
@@ -146,28 +137,11 @@ private Session session;
     }
 
 
-    public void userData() {
-        SqliteHelper sqliteHelper;
-        sqliteHelper = new SqliteHelper(this, "DB_CAMP_FOOTBALL", null, 1);
-
-        SQLiteDatabase db = sqliteHelper.getReadableDatabase();
-
-
-        Cursor cursor = db.rawQuery("SELECT NAME, LAST_NAME, USER_NAME FROM USER WHERE USER.ID = 1",null);
-
-        Toast.makeText(this,cursor.getString(0),Toast.LENGTH_SHORT).show();
-
-        // txtLastnameFragmentMyProfile.setText(""+cursor.getString(0));
-        // txtNameFragmentMyProfile.setText(""+cursor.getString(1));
-        // txtUsernameFragmentMyProfile.setText(""+cursor.getString(2));
-
-    }
-
-    private void logout(){
-        Session a= new Session(this);
-        a.setLoggedin(false,null,null);
+    private void logout() {
+        Session a = new Session(this);
+        a.setLoggedin(false, null, null);
         finish();
-        startActivity(new Intent(this,LoginActivity.class));
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
 }

@@ -2,7 +2,6 @@ package com.example.k11.footballplus.Views;
 
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -68,6 +67,8 @@ public class ReservationActivity extends AppCompatActivity {
         groupRadioButonActivityReservation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                flagHourStart = "";
+                flagHourEnd = "";
                 if (checkedId == R.id.radioButtonOneHourActivityReservation) {
                     flagHourStart = hours[((int) spinerHourActivityRreservation.getSelectedItemId())];
                     flagHourEnd = hours[((int) spinerHourActivityRreservation.getSelectedItemId() + 1)];
@@ -90,7 +91,7 @@ public class ReservationActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                        txtDateActivityReservation.setText(i2 + "/" + i1 + "/" + i);
+                        txtDateActivityReservation.setText(i2 + "/" + i1 + 1 + "/" + i);
                     }
                 }, day, month, year);
 
@@ -141,8 +142,7 @@ public class ReservationActivity extends AppCompatActivity {
         values.put(Constants.TABLA_RESERVATION_DATE, txtDateActivityReservation.getText().toString());
 
         db.insert(Constants.TABLA_NAME_RESERVATION, Constants.TABLA_RESERVATION_ID, values);
-        Intent intent = new Intent(this, ListFieldSoccerActivity.class);
-        startActivity(intent);
+        finish();
         db.close();
     }
 

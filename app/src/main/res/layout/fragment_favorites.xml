@@ -5,8 +5,13 @@
     tools:context="com.example.k11.footballplus.Views.FavoritesFragment">
 
     <!-- colocar item list field  soccer - listado de favoritos     -->
-<include layout="@layout/item_list_field_soccer"/>
 
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewFragmenFavorites"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>
