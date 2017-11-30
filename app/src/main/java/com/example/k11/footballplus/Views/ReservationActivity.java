@@ -2,6 +2,7 @@ package com.example.k11.footballplus.Views;
 
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,8 +27,8 @@ public class ReservationActivity extends AppCompatActivity {
     TextView txtDateActivityReservation;
     Button btnDateActivityReservation,
             btnReserveActivityReservation;
-    private int day, month, year, idCamp;
-    String flagHourStart, flagHourEnd;
+    private int day, month, year, idCamp, sw;
+    String flagHourStart, flagHourEnd, flagtwohours;
     SqliteHelper sqliteHelper;
     SQLiteDatabase db;
 
@@ -69,11 +70,15 @@ public class ReservationActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 flagHourStart = "";
                 flagHourEnd = "";
+                flagtwohours = "";
                 if (checkedId == R.id.radioButtonOneHourActivityReservation) {
                     flagHourStart = hours[((int) spinerHourActivityRreservation.getSelectedItemId())];
                     flagHourEnd = hours[((int) spinerHourActivityRreservation.getSelectedItemId() + 1)];
+                    sw = 1;
                 } else if (checkedId == R.id.radioButtonTwoHourActivityReservation) {
+                    sw = 2;
                     flagHourStart = hours[((int) spinerHourActivityRreservation.getSelectedItemId())];
+                    flagtwohours = hours[((int) spinerHourActivityRreservation.getSelectedItemId() + 1)];
                     flagHourEnd = hours[((int) spinerHourActivityRreservation.getSelectedItemId() + 2)];
                 }
             }
@@ -91,7 +96,7 @@ public class ReservationActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                        txtDateActivityReservation.setText(i2 + "/" + i1 + 1 + "/" + i);
+                        txtDateActivityReservation.setText(i2 + "/" + (i1 + 1) + "/" + i);
                     }
                 }, day, month, year);
 
@@ -113,6 +118,7 @@ public class ReservationActivity extends AppCompatActivity {
 
     }
 
+
     public void onClickcreateComment(String hourStar, String hourEnd, int idCamp) {
 
 
@@ -126,7 +132,7 @@ public class ReservationActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(stringDate)) {
             Toast.makeText(this, "the date has not been selected", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "the camp football was reserved successfully", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "the camp football was reserved successfully", Toast.LENGTH_SHORT).show();
             reserve(hourStar, hourEnd, idCamp);
         }
     }
@@ -134,16 +140,46 @@ public class ReservationActivity extends AppCompatActivity {
     public void reserve(String hourStar, String hourEnd, int idCamp) {
 
         db = sqliteHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(Constants.TABLA_RESERVATION_ID_USER, IdUser.getIdUser());
-        values.put(Constants.TABLA_RESERVATION_ID_CAMP, idCamp);
-        values.put(Constants.TABLA_RESERVATION_START_TIME, hourStar);
-        values.put(Constants.TABLA_RESERVATION_END_TIME, hourEnd);
-        values.put(Constants.TABLA_RESERVATION_DATE, txtDateActivityReservation.getText().toString());
 
-        db.insert(Constants.TABLA_NAME_RESERVATION, Constants.TABLA_RESERVATION_ID, values);
-        finish();
-        db.close();
+        String selectQuery = "SELECT * FROM RESERVATION WHERE ID_CAMP = " + idCamp + " AND START_TIME = '" + hourStar + "' AND DATE = '" + txtDateActivityReservation.getText().toString() + "'";
+        String selectQuery2 = "SELECT * FROM RESERVATION WHERE ID_CAMP = " + idCamp + " AND START_TIME = '" + flagtwohours + "' AND DATE = '" + txtDateActivityReservation.getText().toString() + "'";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor2 = db.rawQuery(selectQuery2, null);
+
+        switch (sw) {
+            case 1:
+                if (cursor.getCount() != 0) {
+                    Toast.makeText(this, "el registro ya existe", Toast.LENGTH_SHORT).show();
+                } else {
+                    ContentValues values = new ContentValues();
+                    values.put(Constants.TABLA_RESERVATION_ID_USER, IdUser.getIdUser());
+                    values.put(Constants.TABLA_RESERVATION_ID_CAMP, idCamp);
+                    values.put(Constants.TABLA_RESERVATION_START_TIME, hourStar);
+                    values.put(Constants.TABLA_RESERVATION_END_TIME, hourEnd);
+                    values.put(Constants.TABLA_RESERVATION_DATE, txtDateActivityReservation.getText().toString());
+                    db.insert(Constants.TABLA_NAME_RESERVATION, Constants.TABLA_RESERVATION_ID, values);
+                    finish();
+                    db.close();
+                }
+                break;
+            case 2:
+                if ((cursor.getCount() != 0) || (cursor2.getCount() != 0)) {
+                    Toast.makeText(this, "horario no disponible", Toast.LENGTH_SHORT).show();
+                } else {
+                    ContentValues values = new ContentValues();
+                    values.put(Constants.TABLA_RESERVATION_ID_USER, IdUser.getIdUser());
+                    values.put(Constants.TABLA_RESERVATION_ID_CAMP, idCamp);
+                    values.put(Constants.TABLA_RESERVATION_START_TIME, hourStar);
+                    values.put(Constants.TABLA_RESERVATION_END_TIME, hourEnd);
+                    values.put(Constants.TABLA_RESERVATION_DATE, txtDateActivityReservation.getText().toString());
+                    db.insert(Constants.TABLA_NAME_RESERVATION, Constants.TABLA_RESERVATION_ID, values);
+                    finish();
+                    db.close();
+                }
+        }
+
+
     }
 
 
