@@ -76,5 +76,4 @@ public class FragmentField extends Fragment {
 
     }
 
-
 }

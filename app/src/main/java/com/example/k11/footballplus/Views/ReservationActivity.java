@@ -107,6 +107,8 @@ public class ReservationActivity extends AppCompatActivity {
                 day = i;
                 month = i1;
                 year = i2;
+                txtDateActivityReservation.setText(year+ "/" + (month + 1) + "/" +  day);
+
             }
         };
 
@@ -116,7 +118,6 @@ public class ReservationActivity extends AppCompatActivity {
 
 
                 showDialog(dialog);
-                txtDateActivityReservation.setText(year+ "/" + (month + 1) + "/" +  day);
             }
         });
 
