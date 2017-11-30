@@ -14,7 +14,6 @@ import com.example.k11.footballplus.Helpers.SqliteHelper;
 import com.example.k11.footballplus.Models.Reservations;
 import com.example.k11.footballplus.R;
 import com.example.k11.footballplus.Views.PerfilUserActivity;
-import com.example.k11.footballplus.Views.ReservationsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,8 +63,8 @@ public class ReservationsFragmentAdapter extends RecyclerView.Adapter<Reservatio
                 db.delete("RESERVATION ", "ID = " + reservationsList.get(position).getIdReservations(), null);
 
                 Intent intent = new Intent(context, PerfilUserActivity.class);
-                context.startActivity(intent);
 
+                context.startActivity(intent);
 
             }
         });

@@ -46,11 +46,11 @@ public class ReservationsFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewComments.setLayoutManager(linearLayoutManager);
 
-        listComment();
+        listReservations();
         return view;
     }
 
-    public void listComment() {
+    public void listReservations() {
         SQLiteDatabase db = sqliteHelper.getReadableDatabase();
 
         try {
