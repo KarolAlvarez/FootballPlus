@@ -1,12 +1,15 @@
 package com.example.k11.footballplus.Adapters;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.k11.footballplus.Helpers.SqliteHelper;
 import com.example.k11.footballplus.Models.Comment;
 import com.example.k11.footballplus.R;
 
@@ -39,8 +42,21 @@ public class CommentFagmentAdapter extends RecyclerView.Adapter<CommentFagmentAd
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         holder.txtTitleItemComment.setText(commentList.get(position).getTitleCommnet());
-        holder.txtDescriptionItemComment.setText(commentList.get(position).getDescriptionComment());
 
+        SqliteHelper sqliteHelper;
+        String nameUser = "";
+        sqliteHelper = new SqliteHelper(context, "DB_CAMP_FOOTBALL", null, 1);
+
+        SQLiteDatabase db = sqliteHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select USER .NAME FROM USER WHERE USER.ID= " + commentList.get(position).getIdUserComment(), null);
+
+
+        while (cursor.moveToNext()) {
+
+            nameUser = cursor.getString(0);
+        }
+
+        holder.txtDescriptionItemComment.setText("@" + nameUser + " " + commentList.get(position).getDescriptionComment());
 
 
         //imagen con picaso

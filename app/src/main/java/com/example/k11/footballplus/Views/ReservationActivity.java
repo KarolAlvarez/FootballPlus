@@ -1,6 +1,7 @@
 package com.example.k11.footballplus.Views;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,7 +25,7 @@ import com.example.k11.footballplus.Utilities.IdUser;
 import java.util.Calendar;
 
 public class ReservationActivity extends AppCompatActivity {
-    TextView txtDateActivityReservation,txtNameFieldReservationActivity;
+    TextView txtDateActivityReservation, txtNameFieldReservationActivity;
     Button btnDateActivityReservation,
             btnReserveActivityReservation;
     private int day, month, year, idCamp, sw;
@@ -45,6 +46,11 @@ public class ReservationActivity extends AppCompatActivity {
             "23:00"};
 
 
+    private static DatePickerDialog.OnDateSetListener escucha;
+
+    private final int dialog = 0;
+    final Calendar calendar = Calendar.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +59,7 @@ public class ReservationActivity extends AppCompatActivity {
         btnDateActivityReservation = (Button) findViewById(R.id.btnDateActivityReservation);
         btnReserveActivityReservation = (Button) findViewById(R.id.btnReserveActivityReservation);
 
-        txtNameFieldReservationActivity=(TextView)findViewById(R.id.txtNameFieldReservationActivity) ;
+        txtNameFieldReservationActivity = (TextView) findViewById(R.id.txtNameFieldReservationActivity);
 
         sqliteHelper = new SqliteHelper(this, "DB_CAMP_FOOTBALL", null, 1);
 
@@ -89,22 +95,26 @@ public class ReservationActivity extends AppCompatActivity {
         });
 
 
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        month = calendar.get(Calendar.MONTH);
+        year = calendar.get(Calendar.YEAR);
+
+        escucha = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                day = i;
+                month = i1;
+                year = i2;
+            }
+        };
+
         btnDateActivityReservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Calendar calendar = Calendar.getInstance();
-                day = calendar.get(Calendar.DAY_OF_MONTH);
-                month = calendar.get(Calendar.MONTH);
-                year = calendar.get(Calendar.YEAR);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                        txtDateActivityReservation.setText(i2 + "/" + (i1 + 1) + "/" + i);
-                    }
-                }, day, month, year);
 
-                datePickerDialog.show();
+                showDialog(dialog);
+                txtDateActivityReservation.setText(day+ "/" + (month + 1) + "/" + year );
             }
         });
 
@@ -115,10 +125,21 @@ public class ReservationActivity extends AppCompatActivity {
 
 
                 onClickcreateComment(flagHourStart, flagHourEnd, idCamp);
+                groupRadioButonActivityReservation.clearCheck();
 
-                // Toast.makeText(view.getContext(), hourStart, Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case 0:
+                return new DatePickerDialog(this, escucha, year, month, day);
+
+        }
+        return null;
 
     }
 
