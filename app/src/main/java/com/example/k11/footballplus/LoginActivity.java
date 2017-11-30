@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,11 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.k11.footballplus.Helpers.SqliteHelper;
-
-
-import com.example.k11.footballplus.Models.Users;
 import com.example.k11.footballplus.Utilities.Constants;
-import com.example.k11.footballplus.Utilities.IdUser;
 import com.example.k11.footballplus.Views.CreateUserActivity;
 import com.example.k11.footballplus.Views.ListFieldSoccerActivity;
 import com.example.k11.footballplus.Views.Session;
@@ -51,10 +46,13 @@ public class LoginActivity extends AppCompatActivity {
                 //guardar id de el usuario que ingresa
 
                 // IdUser.setIdUser(1);
+                if (edtUserNameLogin.getText().toString().isEmpty() || edtUserPasswordLogin.getText().toString().isEmpty()) {
+                    Toast.makeText(view.getContext(), "the field username or password are empty", Toast.LENGTH_SHORT).show();
+                } else {
 
-                login();
-                //Intent intent = new Intent(view.getContext(), ListFieldSoccerActivity.class);
-                //startActivity(intent);
+                    login();
+                    //Intent intent = new Intent(view.getContext(), ListFieldSoccerActivity.class);
+                }  //startActivity(intent);
 
             }
         });
@@ -114,11 +112,11 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
 
 
-
             finish();
         } else {
-            Toast.makeText(getApplicationContext(), "Error de autenticacion", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "incorrect username or password", Toast.LENGTH_SHORT).show();
         }
+
     }
 
 

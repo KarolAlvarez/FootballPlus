@@ -1,7 +1,6 @@
 package com.example.k11.footballplus.Views;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -75,8 +74,7 @@ public class CommentActivity extends AppCompatActivity {
         values.put(Constants.TABLA_COMMENT_DESCRIPTION, edtDecriptionActivityComment.getText().toString());
 
         db.insert(Constants.TABLA_NAME_COMMENT, Constants.TABLA_COMMENT_ID, values);
-        Intent intent = new Intent(this, ListFieldSoccerActivity.class);
-        startActivity(intent);
+        finish();
         db.close();
     }
 

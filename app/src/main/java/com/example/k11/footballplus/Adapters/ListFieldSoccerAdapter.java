@@ -101,7 +101,7 @@ public class ListFieldSoccerAdapter extends RecyclerView.Adapter<ListFieldSoccer
 
                 context.startActivity(intent);
 
-                Toast.makeText(view.getContext(), "reservar cancha", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(view.getContext(), "reservar cancha", Toast.LENGTH_SHORT).show();
             }
         });
 
