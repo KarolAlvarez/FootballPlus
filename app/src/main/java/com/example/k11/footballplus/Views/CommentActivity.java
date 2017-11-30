@@ -47,6 +47,7 @@ public class CommentActivity extends AppCompatActivity {
         });
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("COMMENT");
     }
 
 

@@ -61,7 +61,7 @@ public class ListFieldSoccerActivity extends AppCompatActivity {
 
         listCamp();
 
-
+        getSupportActionBar().setTitle("LIST CAMP FOOTBALL");
     }
 
 

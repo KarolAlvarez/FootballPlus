@@ -62,6 +62,7 @@ public class FieldActivity extends AppCompatActivity {
 
         idCamp = bundle.getInt("idCamp");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("CAMP FOOTBALL");
     }
 
     public void showToolbar(String titulo, boolean upButton) {
