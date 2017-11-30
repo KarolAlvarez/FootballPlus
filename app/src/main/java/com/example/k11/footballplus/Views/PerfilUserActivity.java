@@ -45,7 +45,7 @@ public class PerfilUserActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -62,10 +62,13 @@ public class PerfilUserActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.menuMyProfile) {
 
+
+            return true;
+        }else if (id==android.R.id.home){
             Intent intent = new Intent(this, ListFieldSoccerActivity.class);
             startActivity(intent);
 
-            return true;
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

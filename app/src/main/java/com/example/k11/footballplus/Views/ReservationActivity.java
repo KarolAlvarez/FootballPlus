@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -129,8 +131,39 @@ public class ReservationActivity extends AppCompatActivity {
 
             }
         });
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+
+
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_perfil_user, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.menuMyProfile) {
+
+            //  Intent intent = new Intent(this, ListFieldSoccerActivity.class);
+            // startActivity(intent);
+
+            return true;
+        }else if (id==android.R.id.home){
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     @Override
     protected Dialog onCreateDialog(int id) {

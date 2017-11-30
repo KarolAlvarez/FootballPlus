@@ -7,12 +7,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AlertDialogLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.k11.footballplus.R;
 
@@ -59,8 +61,15 @@ public class FieldActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         idCamp = bundle.getInt("idCamp");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    public void showToolbar(String titulo, boolean upButton) {
+        //setSupportActionBar(t);
+        getSupportActionBar().setTitle(titulo);
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -78,7 +87,10 @@ public class FieldActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
+        }else if(id == android.R.id.home){
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
